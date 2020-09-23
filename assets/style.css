@@ -1,0 +1,112 @@
+/* body */
+* {
+    box-sizing: border-box
+  } 
+  body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    line-height: 1;
+  }
+  .apiTitle {
+      background-color:#1a1c20 !important;
+      color: white !important;
+      text-align: center;
+  }
+
+
+#col1{
+
+    background-color: #f4f4f4;
+}
+
+.cityList{
+  border: solid #aaaaaa 1px !important;
+}
+
+#cityHeader{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+#cityHeaderInfo{
+float: left !important;
+}
+
+.weatherInfo {
+ list-style: none;
+ text-align: left !important;
+ margin: auto auto;
+ padding-left: 0 !important;
+}
+
+#uvIndexDisplay{
+ border: none;
+ border-radius: 30px;
+   font-size: 1rem !important;
+  font-weight: bolder !important;
+}
+
+.green {
+background-color: #79d70f !important;
+}
+.yellow{
+  
+background-color: #fddb3a !important;
+
+}
+.orange{
+  
+background-color: #c87941 !important;
+
+}
+.red{
+  background-color: #931a25  !important;
+
+}
+.purple{
+  background-color: #726a95 !important;
+
+}
+.currentInfo{
+    padding:10px;
+}
+
+
+.cityHeaderInfo{
+    text-align: left;
+}
+
+.forcast{
+    margin: auto auto!important;
+    height: 30vh;
+    margin-bottom: 10px !important;
+}
+
+.dayForecast{
+    background-color: #0779e4 !important;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: left !important;
+    margin: 10px !important;
+}
+
+
+/* footer */
+#footer {
+    text-align: center;
+    margin-top: 10px !important;
+  
+  }
+  .breaker{
+    margin-top: 100px !important;  
+  }
+  .footer-p {
+    margin-top: 10px !important;
+  }
+  
+
+/* "http://api.openweathermap.org/data/2.5//uvi/history?lat=37.75&lon=-122.37&start=1498049953&end=1498481991&appid=2b07208e40c4f732c8daffed5bf88d24"
+"http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=2b07208e40c4f732c8daffed5bf88d24&q=fairfax&cnt=6" */
+  

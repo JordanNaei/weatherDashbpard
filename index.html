@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/7f6813fe31.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <title>WeatherForcast</title>
+</head>
+
+<!-- ______________________________ Main Body ____________________________ -->
+
+<body>
+  <div class="card apiTitle">
+    <div class="card-body">
+      <h1>Weather Dashboard</h1>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <!-- Content here -->
+    <div class="row" id="r1">
+      <div class="col-3" id="col1">
+        <label for="searchBtn"> <b>Search for a City: </b></label>
+        <div class="input-group mb-3">
+          <input type="text" class="" id="serchNow" placeholder="City name" aria-label="Recipient's username"
+            aria-describedby="button-addon2">
+          <div class="">
+            <button class="btn btn-primary" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+        <div class="list-group btn-group-vertical" id="listCitySec">
+        </div>
+      </div>
+      <div class="col-9" id="col2">
+        <div class="row">
+          <div class="card col-12">
+            <div id="cityHeader">
+              <span id="cityHeaderInfo"></span>
+              <div id="imageBox">
+                <img id="currentWicon" src="" alt="Weather icon" />
+              </div>
+            </div>
+            <ul class="container weatherInfo">
+              <li class="currentInfo">Tempreture: <span id="currenttemp"></span></li>
+              <li class="currentInfo">Humidity: <span id="currenthumidity"></span></li>
+              <li class="currentInfo">Wind Speed: <span id="currentwind"></span></li>
+              <li class="currentInfo">UV Index: <button type="button" class="btn btn-light"
+                  id="uvIndexDisplay"></button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row forcast">
+          <div class="col-12">
+            <h1>Five Days Forecast</h1>
+          </div>
+          <div class="card col-2 dayForecast">
+            <h4 id="" class="fcDay"></h4>
+            <div>
+              <img id="" class="fcImg" src="http://openweathermap.org/img/w/01n.png" alt="Weather icon" />
+            </div>
+            <p>Temp: <span class="fcTemp"></span></p>
+            <p>Humidity: <span class="fcHum"></span></p>
+          </div>
+          <div class="card col-2 dayForecast">
+            <h4 id="" class="fcDay"></h4>
+            <div>
+              <img id="" class="fcImg" src="" alt="Weather icon" />
+            </div>
+            <p>Temp: <span class="fcTemp"></span></p>
+            <p>Humidity: <span class="fcHum"></span></p>
+          </div>
+          <div class="card col-2 dayForecast">
+            <h4 id="" class="fcDay"></h4>
+            <div>
+              <img id="" class="fcImg" src="" alt="Weather icon" />
+            </div>
+            <p>Temp: <span class="fcTemp"></span></p>
+            <p>Humidity: <span class="fcHum"></span></p>
+          </div>
+          <div class="card col-2 dayForecast">
+            <h4 id="" class="fcDay"></h4>
+            <div>
+              <img id="" class="fcImg" src="" alt="Weather icon" />
+            </div>
+            <p>Temp: <span class="fcTemp"></span></p>
+            <p>Humidity: <span class="fcHum"></span></p>
+          </div>
+          <div class="card col-2 dayForecast">
+            <h4 id="" class="fcDay"></h4>
+            <div>
+              <img id="" class="fcImg" src="" alt="Weather icon" />
+            </div>
+            <p>Temp: <span class="fcTemp"></span></p>
+            <p>Humidity: <span class="fcHum"></span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- </div> -->
+  </div>
+  <!-- ______________________________ Scripts ____________________________ -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/moment.min.js"></script>
+
+  <!-- ______________________________ FOOTER ________________________________ -->
+  <hr class="col-12 breaker" />
+  <footer id="footer">
+    <i class="f-icon fab fa-twitter"></i>
+    <i class="f-icon fab fa-facebook"></i>
+    <i class="f-icon fab fa-instagram"></i>
+    <i class="f-icon fas fa-envelope"></i>
+    <p class="footer-p">
+      <em>© Copyright 2020 Jordan Naei</em>
+    </p>
+  </footer>
+  <script src="assets/script.js"></script>
+</body>
+
+</html>
