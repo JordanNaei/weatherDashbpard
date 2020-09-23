@@ -36,7 +36,7 @@ function getCityLonLat(o) {
   console.log(cityName);
 
   var queryForcast =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
     "&APPID=2b07208e40c4f732c8daffed5bf88d24";
   console.log(queryForcast);
@@ -77,7 +77,7 @@ function getCityForcast(p, v, c) {
 function displayCurrentWeather(z) {
   displayForecastWeahter(z);
   var currentIcon =
-    "http://openweathermap.org/img/w/" + z.current.weather[0].icon + ".png";
+    "https://openweathermap.org/img/w/" + z.current.weather[0].icon + ".png";
   $("#currentWicon").attr("src", currentIcon);
   $("#currentWicon").attr("alt", "Weather Icon");
   $("#currenttemp")
@@ -124,7 +124,7 @@ function displayForecastWeahter(b) {
     $(forcastHumElements[i]).text(b.daily[i + 1].humidity + " %");
     $(forcastImg[i]).attr(
       "src",
-      "http://openweathermap.org/img/w/" +
+      "https://openweathermap.org/img/w/" +
       b.daily[i + 1].weather[0].icon +
       ".png"
     )
@@ -226,7 +226,7 @@ function showPosition(position) {
 function getCityName(la, lo) {
 
   var queryLonLat =
-    "http://api.openweathermap.org/data/2.5/weather?lat=" + la + "&lon=" + lo + "&APPID=2b07208e40c4f732c8daffed5bf88d24";
+    "https://api.openweathermap.org/data/2.5/weather?lat=" + la + "&lon=" + lo + "&APPID=2b07208e40c4f732c8daffed5bf88d24";
   console.log(queryLonLat);
 
   $.ajax({
