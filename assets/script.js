@@ -1,22 +1,21 @@
 var userInput = $("#serchNow");
+var citySeachBtn = $("#searchBtn");
 var intialUrlBuild;
 var forcaseWeatherObj;
 var citySearchHistory = [];
 
+// click event on the search button
 $("#searchBtn").on("click", function (e) {
   e.preventDefault();
-  renderDisplay();
   console.log("I got clicked");
+  renderDisplay();
   var userInputText = $("#serchNow").val().trim().toLowerCase();
-  console.log(userInputText);
-
+  $(citySeachBtn).prop('disabled', true);
   if (userInputText < 1) {
     console.log("Nothing to search");
   } else {
     if (citySearchHistory.includes(userInputText)) {
-      var displayCity = userInputText ;
-      var firstDisplayCity = displayCity.charAt(0).toUpperCase();
-      var pascalCity = firstDisplayCity + displayCity.substring(1);
+      var pascalCity = pascalWordConverter(userInputText);
       $("#cityHeaderInfo")
         .text(pascalCity + " " + "(" + moment().format("MM/DD/YYYY") + ")")
         .css({ "font-weight": "bold" });
@@ -30,7 +29,7 @@ $("#searchBtn").on("click", function (e) {
     }
   }
 });
-// Get the city current Weather
+// Get the city lon and lat from Weather api  
 function getCityLonLat(o) {
   intialUrlBuild = o.toString();
   var cityName = intialUrlBuild.trim();
@@ -80,6 +79,7 @@ function displayCurrentWeather(z) {
   var currentIcon =
     "http://openweathermap.org/img/w/" + z.current.weather[0].icon + ".png";
   $("#currentWicon").attr("src", currentIcon);
+  $("#currentWicon").attr("alt", "Weather Icon");
   $("#currenttemp")
     .text(tempKtoFConverter(z.current.temp) + " °F")
     .css({ "font-weight": "bold" });
@@ -125,17 +125,17 @@ function displayForecastWeahter(b) {
     $(forcastImg[i]).attr(
       "src",
       "http://openweathermap.org/img/w/" +
-        b.daily[i + 1].weather[0].icon +
-        ".png"
-    );
+      b.daily[i + 1].weather[0].icon +
+      ".png"
+    )
+    $(forcastImg[i]).attr("alt", "Weather Icon");
+    ;
   }
 }
 
 // Adding the city button to the search list
 function generateButton(u) {
-  var lowerCaseU = u.toLowerCase();
-  var pascalU = lowerCaseU.charAt(0).toUpperCase();
-  var remainderCity = pascalU + lowerCaseU.substring(1);
+  var remainderCity = pascalWordConverter(u);
   var time = moment().format("MMMM Do YYYY");
   console.log(time);
   console.log();
@@ -154,6 +154,7 @@ function clearInputField() {
   $("#serchNow").val("");
 }
 
+// Temp Kalvin to F converter
 function tempKtoFConverter(k) {
   var tempInK = k;
   var tempInF = (tempInK - 273.15) * (9 / 5) + 32;
@@ -161,7 +162,7 @@ function tempKtoFConverter(k) {
   return tempInF.toFixed(2);
 }
 
-// Reseach City history buttons
+// Reseach City history buttons' event
 $("#listCitySec").on("click", ".cityList", function () {
   renderDisplay();
   var cityFromButton = this.innerText.toString();
@@ -172,7 +173,6 @@ $("#listCitySec").on("click", ".cityList", function () {
 });
 
 // Render Display on click events for both research and city history buttons
-
 function renderDisplay() {
   $("#cityHeaderInfo").empty();
   $("#currentWicon").attr("src", "");
@@ -180,11 +180,68 @@ function renderDisplay() {
   $("#currenthumidity").empty();
   $("#currentwind").empty();
   $("#uvIndexDisplay").empty();
+  $("#uvIndexDisplay").attr("class", "noBackGround");
   $(".fcDay").empty();
   $(".fcImg").empty();
   $(".fcTemp").empty();
   $(".fcHum").empty();
 }
+
+// Disabling the search button when there is no input delivered by the client
+$("#serchNow").keyup(function () {
+  var checkingInput = $("#serchNow").val().trim();
+  console.log(checkingInput);
+  if (checkingInput.length < 1) {
+    $(citySeachBtn).prop('disabled', true);
+  }
+  else {
+    $(citySeachBtn).prop('disabled', false);
+  }
+});
+
+// Pascal style words converter
+function pascalWordConverter(w) {
+  var wFirstLetter = w.charAt(0).toUpperCase();
+  var wPascal = wFirstLetter + w.substring(1);
+  return wPascal;
+}
+
+
+// Get current location lon lat and city name in to display incase no search was conducted in the first place
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+  else {
+    console.log("we not permitted to get the location");;
+  }
+}
+function showPosition(position) {
+  var locationLat = position.coords.latitude;
+  var locationLon = position.coords.longitude;
+  console.log("Your coordinates are Latitude: " + locationLat + " Longitude " + locationLon);
+  getCityName(locationLat, locationLon);
+}
+// get city name from Weahter API using lon and lat
+function getCityName(la, lo) {
+
+  var queryLonLat =
+    "http://api.openweathermap.org/data/2.5/weather?lat=" + la + "&lon=" + lo + "&APPID=2b07208e40c4f732c8daffed5bf88d24";
+  console.log(queryLonLat);
+
+  $.ajax({
+    url: queryLonLat,
+    method: "GET",
+  }).then(function (rr) {
+    console.log(rr);
+    console.log(rr.coord.lon, rr.coord.lat, rr.name);
+    getCityForcast(rr.coord.lon, rr.coord.lat, rr.name);
+    $("#cityHeaderInfo")
+      .text(rr.name + " " + "(" + moment().format("MM/DD/YYYY") + ")")
+      .css({ "font-weight": "bold" });
+  });
+}
+
 
 // Initializing the Page
 function intializePage() {
@@ -192,13 +249,13 @@ function intializePage() {
     JSON.parse(localStorage.getItem("lastForcast")) || {};
   if (getSavedForcastObj.cityName == undefined) {
     console.log("Nothing Saved in the memory");
+    getLocation();
   } else {
     console.log(getSavedForcastObj);
     var intialTime = moment().format("MMMM Do YYYY");
     getCityLonLat(getSavedForcastObj.cityName);
     var initialCity = getSavedForcastObj.cityName;
-    var initialPascalCity = initialCity.charAt(0).toUpperCase();
-    var presentCity = initialPascalCity + initialCity.substring(1);
+    var presentCity = pascalWordConverter(initialCity);
     $("#cityHeaderInfo")
       .text(presentCity + " " + "(" + intialTime + ")")
       .css({ "font-weight": "bold" });
