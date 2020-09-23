@@ -48,10 +48,10 @@ Deployed application URL: https://jordannaei.github.io/codeQuiz/index.html
 
 ###
 Mobile Friendly checker:
-<img src="Assets/MobileFTest.PNG" alt= "this is the Mobile Friendly Test">
+<img src="assets/MobileFTest.PNG" alt= "this is the Mobile Friendly Test">
 
 ###
 DevTool Test:
-<img src="Assets/DevToolTest.PNG" alt= "this is the DevTool Test">
+<img src="assets/DevToolTest.PNG" alt= "this is the DevTool Test">
 
 
