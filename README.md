@@ -44,7 +44,7 @@ THEN I am presented with the last searched city forecast (pass)
 ```
 ###
 Deployed application URL: https://jordannaei.github.io/codeQuiz/index.html
-<img src="Assets/eventPlanner.PNG" alt= "this is the app main page">
+<img src="assets/application.PNG" alt= "this is the app main page">
 
 ###
 Mobile Friendly checker:
