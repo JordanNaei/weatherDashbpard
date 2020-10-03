@@ -67,6 +67,7 @@ function getCityForcast(p, v, c) {
     url: queryForcast,
     method: "GET",
   }).then(function (response) {
+    console.log(response);
     forcaseWeatherObj = { cityName: c, response: response };
     localStorage.setItem("lastForcast", JSON.stringify(forcaseWeatherObj));
     displayCurrentWeather(response);
@@ -82,6 +83,7 @@ function displayCurrentWeather(z) {
   $("#currentWicon").attr("alt", "Weather Icon");
   $("#currenttemp")
     .text(tempKtoFConverter(z.current.temp) + " °F")
+    console.log(z.current.temp);
     .css({ "font-weight": "bold" });
   $("#currenthumidity")
     .text(z.current.humidity + " %")

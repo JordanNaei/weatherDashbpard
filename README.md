@@ -43,7 +43,7 @@ WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast (pass)
 ```
 ###
-Deployed application URL: https://jordannaei.github.io/codeQuiz/index.html
+Deployed application URL: https://jordannaei.github.io/weatherDashbpard/
 <img src="assets/application.PNG" alt= "this is the app main page">
 
 ###
