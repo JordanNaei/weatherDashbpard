@@ -83,8 +83,8 @@ function displayCurrentWeather(z) {
   $("#currentWicon").attr("alt", "Weather Icon");
   $("#currenttemp")
     .text(tempKtoFConverter(z.current.temp) + " °F")
-    console.log(z.current.temp);
     .css({ "font-weight": "bold" });
+    console.log(z.current.temp);
   $("#currenthumidity")
     .text(z.current.humidity + " %")
     .css({ "font-weight": "bold" });
